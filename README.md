@@ -1,0 +1,2 @@
+# YamoRetailManager
+Retail Management System
