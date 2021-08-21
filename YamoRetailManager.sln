@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YamoDataManager", "YamoDataManager\YamoDataManager.csproj", "{99510AFE-FF52-409E-BBD9-5D52EA8DC2A8}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "YamoData", "YamoData\YamoData.sqlproj", "{7D4D49A5-7B62-4B30-AEDC-7F0B441D76BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YamoDesktopUI", "YamoDesktopUI\YamoDesktopUI.csproj", "{4569D621-8AA8-43FE-A338-D1CB0047253F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,16 @@ Global
 		{99510AFE-FF52-409E-BBD9-5D52EA8DC2A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99510AFE-FF52-409E-BBD9-5D52EA8DC2A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99510AFE-FF52-409E-BBD9-5D52EA8DC2A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D4D49A5-7B62-4B30-AEDC-7F0B441D76BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D4D49A5-7B62-4B30-AEDC-7F0B441D76BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D4D49A5-7B62-4B30-AEDC-7F0B441D76BB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7D4D49A5-7B62-4B30-AEDC-7F0B441D76BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D4D49A5-7B62-4B30-AEDC-7F0B441D76BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D4D49A5-7B62-4B30-AEDC-7F0B441D76BB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4569D621-8AA8-43FE-A338-D1CB0047253F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4569D621-8AA8-43FE-A338-D1CB0047253F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4569D621-8AA8-43FE-A338-D1CB0047253F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4569D621-8AA8-43FE-A338-D1CB0047253F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
