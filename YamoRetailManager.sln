@@ -9,6 +9,10 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "YamoData", "YamoData\YamoDa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YamoDesktopUI", "YamoDesktopUI\YamoDesktopUI.csproj", "{4569D621-8AA8-43FE-A338-D1CB0047253F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YamoDataManager.Library", "YamoDataManager.Library\YamoDataManager.Library.csproj", "{6BE5B523-13F6-45B1-BE9A-1B80913D1ED3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YamoDesktopUI.Library", "YamoDesktopUI.Library\YamoDesktopUI.Library.csproj", "{6EAFB711-E541-42CB-B5BE-6F3ED1531F26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,14 @@ Global
 		{4569D621-8AA8-43FE-A338-D1CB0047253F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4569D621-8AA8-43FE-A338-D1CB0047253F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4569D621-8AA8-43FE-A338-D1CB0047253F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BE5B523-13F6-45B1-BE9A-1B80913D1ED3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BE5B523-13F6-45B1-BE9A-1B80913D1ED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BE5B523-13F6-45B1-BE9A-1B80913D1ED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BE5B523-13F6-45B1-BE9A-1B80913D1ED3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EAFB711-E541-42CB-B5BE-6F3ED1531F26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EAFB711-E541-42CB-B5BE-6F3ED1531F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EAFB711-E541-42CB-B5BE-6F3ED1531F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EAFB711-E541-42CB-B5BE-6F3ED1531F26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

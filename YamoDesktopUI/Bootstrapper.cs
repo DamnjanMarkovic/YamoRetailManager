@@ -5,6 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using YamoDesktopUI.Helpers;
+using YamoDesktopUI.Library.API;
+using YamoDesktopUI.Library.Models;
 using YamoDesktopUI.ViewModels;
 
 namespace YamoDesktopUI
@@ -15,6 +19,11 @@ namespace YamoDesktopUI
         public Bootstrapper()
         {
             Initialize();
+
+            ConventionManager.AddElementConvention<PasswordBox>(
+                PasswordBoxHelper.BoundPasswordProperty,
+                "Password",
+                "PasswordChanged");
         }
 
         protected override void Configure()
@@ -23,7 +32,9 @@ namespace YamoDesktopUI
 
             _container
                 .Singleton<IWindowManager, WindowManager>()
-                .Singleton<IEventAggregator, EventAggregator>();
+                .Singleton<IEventAggregator, EventAggregator>()
+                .Singleton<IAPIHelper, APIHelper>()
+                .Singleton<ILoggedInUserModel, LoggedInUserModel>();
 
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)
@@ -31,6 +42,7 @@ namespace YamoDesktopUI
                 .ToList()
                 .ForEach(viewModelType => _container.RegisterPerRequest(
                     viewModelType, viewModelType.ToString(), viewModelType));
+
         }
 
 
