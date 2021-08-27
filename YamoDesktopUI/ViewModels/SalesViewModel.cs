@@ -5,14 +5,34 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YamoDesktopUI.Library.API;
+using YamoDesktopUI.Library.Models;
 
 namespace YamoDesktopUI.ViewModels
 {
     public class SalesViewModel: Screen
     {
-        private BindingList<string> _products;
+        IProductEndPoint _productEndPoint;
+        public SalesViewModel(IProductEndPoint productEndPoint)
+        {
+            _productEndPoint = productEndPoint;
+        }
 
-        public BindingList<string> Products
+        protected override async void OnViewLoaded(object view)
+        {
+            base.OnViewLoaded(view);
+            await LoadProducts();
+        }
+
+        private async Task LoadProducts()
+        {
+            var productList = await _productEndPoint.GetAllAsync();
+            Products = new BindingList<ProductModel>(productList);
+        }
+
+        private BindingList<ProductModel> _products;
+
+        public BindingList<ProductModel> Products
         {
             get { return _products; }
             set 
@@ -22,9 +42,24 @@ namespace YamoDesktopUI.ViewModels
             }
         }
 
-        private BindingList<string> _cart;
+        private ProductModel _selectedProduct;
 
-        public BindingList<string> Cart
+        public ProductModel SelectedProduct
+        {
+            get { return _selectedProduct; }
+            set 
+            {
+                _selectedProduct = value;
+                NotifyOfPropertyChange(() => SelectedProduct);
+                NotifyOfPropertyChange(() => CanAddToCart);
+            }
+        }
+
+
+
+        private BindingList<CartItemModel> _cart = new BindingList<CartItemModel>();
+
+        public BindingList<CartItemModel> Cart
         {
             get { return _cart; }
             set
@@ -34,7 +69,7 @@ namespace YamoDesktopUI.ViewModels
             }
         }
 
-        private int _itemQuantity;
+        private int _itemQuantity = 1;
 
         public int ItemQuantity
         {
@@ -43,6 +78,8 @@ namespace YamoDesktopUI.ViewModels
             { 
                 _itemQuantity = value;
                 NotifyOfPropertyChange(() => ItemQuantity);
+                NotifyOfPropertyChange(() => CanAddToCart);
+
             }
         }
 
@@ -50,21 +87,20 @@ namespace YamoDesktopUI.ViewModels
         {
             get
             {
-                return "0.00";  
+                decimal subTotal = 0;
+                foreach (var item in Cart)
+                {
+                    subTotal += (item.Product.RetailPrice * item.QuantityInCart);
+                }
+                return subTotal.ToString("C");
             }
         }
-        public string Total
-        {
-            get
-            {
-                return "0.00";
-            }
-        }
+
         public string Tax
         {
             get
             {
-                return "0.00";
+                return "$0.00";
             }
         }
 
@@ -73,6 +109,10 @@ namespace YamoDesktopUI.ViewModels
             get
             {
                 bool output = false;
+                if(ItemQuantity > 0 && SelectedProduct?.QuantityInStock >= ItemQuantity)
+                {
+                    output = true;
+                }
                 
                 return output;
             }
@@ -80,7 +120,29 @@ namespace YamoDesktopUI.ViewModels
 
         public void AddToCart()
         {
+            CartItemModel existingItem = Cart.FirstOrDefault(x => x.Product == SelectedProduct);
 
+            if (existingItem != null)
+            {
+                existingItem.QuantityInCart += ItemQuantity;
+                //Commented hack solution
+                Cart.Remove(existingItem);
+                Cart.Add(existingItem);
+            }
+            else
+            {
+                CartItemModel item = new CartItemModel
+                {
+                    Product = SelectedProduct,
+                    QuantityInCart = ItemQuantity
+                };
+                Cart.Add(item);
+            }
+
+
+            SelectedProduct.QuantityInStock -= ItemQuantity;
+            ItemQuantity = 1;
+            NotifyOfPropertyChange(() => SubTotal);
         }
 
         public bool CanRemoveFromCart
@@ -95,7 +157,7 @@ namespace YamoDesktopUI.ViewModels
 
         public void RemoveFromCart()
         {
-
+            NotifyOfPropertyChange(() => SubTotal);
         }
 
         public bool CanCheckOut
